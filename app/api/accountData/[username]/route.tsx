@@ -6,6 +6,6 @@ export async function GET(
 	{ params }: { params: { username: string } }
 ) {
 	const rss = await parse(`https://medium.com/feed/@${params.username}`)
-	console.log(params.username)
+	console.log(rss)
 	return NextResponse.json(rss)
 }
