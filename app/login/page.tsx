@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-export default function Signup() {
+export default function Login() {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',

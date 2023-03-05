@@ -1,8 +1,6 @@
 'use client'
 import { useState } from 'react'
 
-import Card from './Card'
-
 export default function Home() {
 	const [data, setData] = useState(null)
 	const [username, setUsername] = useState('')
@@ -53,16 +51,13 @@ export default function Home() {
 						</svg>
 					</button>
 				</form>
-				{data ? (
+				{data &&
 					data.items.map((item) => (
 						<div
 							key={item.id}
 							dangerouslySetInnerHTML={{ __html: item.content }}
 						/>
-					))
-				) : (
-					<Card />
-				)}
+					))}
 			</main>
 		</>
 	)
