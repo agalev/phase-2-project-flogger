@@ -1,19 +1,19 @@
 import './globals.css'
-
-export const metadata = {
-	title: 'Flogger app',
-	description: 'Fetch blog posts from Medium'
-}
+import Header from './Header'
+import Footer from './Footer'
 
 export default function RootLayout({
 	children
 }: {
 	children: React.ReactNode
 }) {
+
 	return (
 		<html lang='en'>
 			<body>
+				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	)

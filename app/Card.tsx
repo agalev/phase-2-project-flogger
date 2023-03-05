@@ -1,4 +1,5 @@
 export default function Card() {
+	
 	return (
 		<article className='pt-6 pb-12 bg-gray-300 container w-100 lg:w-4/5 mx-auto flex flex-col'>
 			<div
