@@ -9,13 +9,16 @@ const UserProvider = ({ children }) => {
 			case 'LOGIN':
 				return {
 					...state,
+					isLoggedIn: true,
 					user: action.payload.user,
-					medium_username: action.payload.user.medium_username
+					medium_username: action.payload.medium_username
 				}
 			case 'LOGOUT':
 				return {
-					...state,
-					user: null
+					isLoggedIn: false,
+					user: null,
+					medium_username: null,
+					favorites: []
 				}
 			case 'ADD_FAVORITE':
 				return {
@@ -35,11 +38,12 @@ const UserProvider = ({ children }) => {
 	}
 
 	const [state, dispatch] = useReducer(reducer, {
+		isLoggedIn: false,
 		user: null,
 		medium_username: null,
 		favorites: []
 	})
-
+	console.log(state)
 	return (
 		<UserContext.Provider value={{ state, dispatch }}>
 			{children}

@@ -1,20 +1,34 @@
 'use client'
+import { useState, useEffect, useContext } from 'react'
 import Link from 'next/link'
-import { useState, useContext } from 'react'
+import { useRouter } from 'next/navigation'
 import { UserContext } from './user-provider'
 
 export default function Header() {
 	const [currentPage, setCurrentPage] = useState('dashboard')
+	const [message, setMessage] = useState('Hello stranger! Please login ->')
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
 	const userData = useContext(UserContext)
 
 	const handleNav = (e) => {
 		setCurrentPage(e.target.innerText.toLowerCase())
+		setIsMenuOpen(false)
 	}
+
+	let router = useRouter()
+	function redirect() {
+		router.push('/login')
+	}
+
+	useEffect(() => {
+		userData.state.isLoggedIn &&
+			setMessage(`Hello ${userData.state.user.name}!`)
+	}, [userData])
+
 	return (
 		<nav className='bg-slate-700'>
-			<div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+			<div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
 				<div className='flex h-16 items-center justify-between'>
 					<div className='flex items-center'>
 						<div className='flex-shrink-0'>
@@ -24,42 +38,63 @@ export default function Header() {
 							</span>
 						</div>
 						<div className='hidden md:block'>
-							<div className='ml-10 flex items-baseline space-x-4'>
-								{/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-								<Link
-									href='/'
-									className={
-										currentPage === 'dashboard'
-											? 'bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
-											: 'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
-									}
-									onClick={handleNav}
-								>
-									Dashboard
-								</Link>
-								<Link
-									href='/favorites'
-									className={
-										currentPage === 'favorites'
-											? 'bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
-											: 'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
-									}
-									onClick={handleNav}
-								>
-									Favorites
-								</Link>
-								{/* {userData.state.name && <span>Hello, {userData.state.name}!</span>} */}
-								<Link
-									href='/login'
-									className={
-										currentPage === 'login'
-											? 'absolute right-10 bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
-											: 'absolute right-10 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
-									}
-									onClick={handleNav}
-								>
-									Login
-								</Link>
+							{userData.state.isLoggedIn && (
+								<div className='ml-10 flex items-baseline space-x-4'>
+									{/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+									<Link
+										href='/'
+										className={
+											currentPage === 'dashboard'
+												? 'bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
+												: 'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
+										}
+										onClick={handleNav}
+									>
+										Dashboard
+									</Link>
+									<Link
+										href='/favorites'
+										className={
+											currentPage === 'favorites'
+												? 'bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
+												: 'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
+										}
+										onClick={handleNav}
+									>
+										Favorites
+									</Link>
+								</div>
+							)}
+							<div className='absolute right-5 top-5'>
+								<span className='bg-slate-300 border border-transparent rounded-xl px-2 mr-2'>
+									{message}
+								</span>
+								{userData.state.isLoggedIn ? (
+									<button
+										className='bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
+										onClick={() => {
+											userData.dispatch({
+												type: 'LOGOUT'
+											})
+											setMessage('Hello stranger! Please login ->')
+											redirect()
+										}}
+									>
+										Logout
+									</button>
+								) : (
+									<Link
+										href='/login'
+										className={
+											currentPage === 'login'
+												? 'bg-gray-900 text-white bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium'
+												: 'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
+										}
+										onClick={handleNav}
+									>
+										Login
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>

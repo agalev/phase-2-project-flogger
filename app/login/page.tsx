@@ -39,9 +39,10 @@ export default function Login() {
 								type: 'LOGIN',
 								payload: {
 									user: {
-										email: user.email,
-										medium_username: user.medium_username
-									}
+										name: user.name,
+										email: user.email
+									},
+									medium_username: user.medium_username
 								}
 							})
 							redirect()
@@ -51,7 +52,9 @@ export default function Login() {
 			)
 	}
 
-	return (
+	return userData.state.isLoggedIn ? (
+		<h1>Already logged in</h1>
+	) : (
 		<section className='grid justify-center'>
 			<form
 				className='border border-2 rounded border-teal-400 grid items-center justify-center m-4 p-2'

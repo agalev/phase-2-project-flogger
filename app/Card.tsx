@@ -1,26 +1,69 @@
-export default function Card() {
-	
+import Image from 'next/image'
+
+export default function Card({
+	image,
+	id,
+	title,
+	author,
+	category,
+	content,
+	published,
+	link
+}) {
+	const date = new Date(published).toLocaleDateString('en-US', {
+		day: 'numeric',
+		month: 'short',
+		year: 'numeric'
+	})
+	// regex for parsing html tags
+	const regex = /(<([^>]+)>)/gi
+	// remove html tags from content
+	const truncatedContent = content
+		.replace(regex, '')
+		.slice(0, 300)
+		.concat('...')
+
 	return (
-		<article className='pt-6 pb-12 bg-gray-300 container w-100 lg:w-4/5 mx-auto flex flex-col'>
-			<div
-				v-for='card in cards'
-				className='flex flex-col md:flex-row overflow-hidden bg-white rounded-lg shadow-xl  mt-4 w-100 mx-2'
-			>
-				<div className='h-64 w-auto md:w-1/2'>
-					<img
-						className='inset-0 h-full w-full object-cover object-center'
-						src=''
-						alt=''
-					/>
-				</div>
-				<div className='w-full py-4 px-6 text-gray-800 flex flex-col justify-between'>
-					<h3 className='font-semibold text-lg leading-tight truncate'>
-						title
-					</h3>
-					<p className='mt-2'>excerpt</p>
-					<p className='text-sm text-gray-700 uppercase tracking-wide font-semibold mt-2'>
-						author / date
-					</p>
+		<article className='flex max-w-3xl flex-col items-start justify-between border border-4 rounded border-teal-400  m-4 p-2 hover:bg-teal-100 hover:shadow-2xl'>
+			<div className='flex items-center border-b-2 border-r-2 border-teal-400 pb-1 text-xs'>
+				<time className='text-teal-600'>{date}</time>
+				<span className='text-teal-600'>•</span>
+				{category.map((category, index) => {
+					return (
+						<span
+							key={index}
+							className='text-gray-100 mx-1 bg-teal-800 border border-transparent rounded-xl px-1'
+						>
+							#{category}
+						</span>
+					)
+				})}
+			</div>
+			<div className='group relative'>
+				<h3 className='mt-3 text-lg font-semibold leading-6 text-teal-900'>
+					{title}
+				</h3>
+				<p className='mt-5 text-sm leading-6 text-gray-600 line-clamp-3'>
+					{truncatedContent}
+				</p>
+			</div>
+			<div className='relative mt-8 flex items-center gap-x-4'>
+				<Image
+					loader={({ src }) => src}
+					src={image}
+					alt={author}
+					height={60}
+					width={60}
+				/>
+				<div className='text-sm leading-6'>
+					<p className='font-semibold text-gray-900'>{author}</p>
+					<a
+						href={link}
+						target='_blank'
+						className='text-teal-600 hover:text-teal-800 hover:font-semibold'
+					>
+						Link to article on Medium
+					</a>
 				</div>
 			</div>
 		</article>
