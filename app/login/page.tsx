@@ -1,13 +1,21 @@
 'use client'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { UserContext } from '../user-provider'
 
 export default function Login() {
 	const [formData, setFormData] = useState({
 		email: '',
 		password: ''
 	})
+
+	let router = useRouter()
+	function redirect() {
+		router.push('/')
+	}
+
+	const userData = useContext(UserContext)
 
 	const handleChange = (e) => {
 		setFormData({
@@ -20,17 +28,26 @@ export default function Login() {
 		e.preventDefault()
 		fetch('http://localhost:3001/users')
 			.then((res) => res.json())
-			.then((data) =>
-				data.find((user) => {
-					if (
-						user.email === formData.email &&
-						user.password === formData.password
-					) {
-						redirect('https://localhost:3000/')
-					} else {
-						return alert('Incorrect email or password')
-					}
-				})
+			.then(
+				(data) =>
+					data.find((user) => {
+						if (
+							user.email === formData.email &&
+							user.password === formData.password
+						) {
+							userData.dispatch({
+								type: 'LOGIN',
+								payload: {
+									user: {
+										email: user.email,
+										medium_username: user.medium_username
+									}
+								}
+							})
+							redirect()
+							return true
+						}
+					}) || alert('Incorrect email or password')
 			)
 	}
 

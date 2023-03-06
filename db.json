@@ -2,9 +2,17 @@
   "users": [
     {
       "id": 1,
+      "name": "Alex",
       "email": "alex.galev@yahoo.com",
       "password": "123456",
       "medium_username": "alexander.galev"
+    },
+    {
+      "name": "David",
+      "email": "david@david.com",
+      "password": "123",
+      "medium_username": "david",
+      "id": 2
     }
   ]
 }
