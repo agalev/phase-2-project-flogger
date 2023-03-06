@@ -1,8 +1,9 @@
 'use client'
 import { useState } from 'react'
+import Link from 'next/link'
+
 export default function Signup() {
 	const [formData, setFormData] = useState({
-		name: '',
 		email: '',
 		password: '',
 		medium_username: ''
@@ -18,6 +19,15 @@ export default function Signup() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		console.log(formData)
+		fetch('http://localhost:3001/users/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formData)
+			})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
 	}
 
 	return (
@@ -50,7 +60,7 @@ export default function Signup() {
 				/>
 				<label>Medium Username:</label>
 				<div className='inline-flex mb-3'>
-					<span className='items-center px-3 text-xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md'>
+					<span className='items-center px-2 text-xl text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md'>
 						@
 					</span>
 					<input
@@ -65,8 +75,17 @@ export default function Signup() {
 					/>
 				</div>
 				<button className='relative flex w-full justify-center rounded-md bg-teal-400 py-2 px-3 text-sm font-semibold text-white hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
-					Submit
+					Sign up
 				</button>
+			<span>
+				Already have an account?
+				<Link
+					className='relative inline-flex px-1 justify-center rounded-md bg-teal-400 mt-2 text-sm font-semibold text-white hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+					href='/login'
+				>
+					Log in
+				</Link>
+			</span>
 			</form>
 		</section>
 	)
