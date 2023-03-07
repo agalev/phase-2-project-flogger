@@ -4,20 +4,15 @@ import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../user-provider'
 import Card from '../Card'
 
-export default function Favorites() {
+export default function Feed() {
 	const [data, setData] = useState(null)
 	const userData = useContext(UserContext)
 
 	useEffect(() => {
-		fetch('http://localhost:3001/favorites')
+		fetch('http://localhost:3001/feed')
 			.then((res) => res.json())
-			.then((data) => {
-				const filtered = data.filter((item) =>
-					item.likedBy.includes(userData.state.user.email)
-				)
-				setData(filtered)
-			})
-	}, [userData.state.user.email])
+			.then((data) => setData(data))
+	}, [])
 
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>

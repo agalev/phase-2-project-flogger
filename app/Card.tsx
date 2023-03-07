@@ -32,25 +32,36 @@ export default function Card({
 		.concat('...')
 
 	const handleFavorite = () => {
-		console.log('clicked', id)
-		fetch('http://localhost:3001/favorites', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				likedBy: userData.state.user.email,
-				id,
-				image,
-				title,
-				author,
-				category,
-				content,
-				published,
-				link
+		fetch('http://localhost:3001/favorites')
+			.then((res) => res.json())
+			.then((data) => {
+				const found = data.find((item) => item.id === id)
+				if (found) {
+					fetch(`http://localhost:3001/favorites/${id}`, {
+						method: 'DELETE'
+					})
+					setFavorite(!favorite)
+				} else {
+					fetch('http://localhost:3001/favorites', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							likedBy: userData.state.user.email,
+							id,
+							image,
+							title,
+							author,
+							category,
+							content,
+							published,
+							link
+						})
+					})
+					setFavorite(!favorite)
+				}
 			})
-		})
-		setFavorite(!favorite)
 	}
 
 	return (
