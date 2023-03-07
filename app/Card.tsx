@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 
 import { UserContext } from './user-provider'
@@ -15,8 +15,27 @@ export default function Card({
 	published,
 	link
 }) {
-	const [favorite, setFavorite] = useState(false)
 	const userData = useContext(UserContext)
+	const [favorite, setFavorite] = useState(null)
+
+	useEffect(() => {
+		fetch('http://localhost:3001/favorites')
+			.then((res) => res.json())
+			.then((data) => {
+				const found = data.find((item) => item.id === published)
+				if (
+					found &&
+					found.likedBy.find(
+						(likeEntry) => likeEntry === userData.state.user.email
+					)
+				) {
+					setFavorite(true)
+				} else {
+					setFavorite(false)
+				}
+			})
+	}, [userData.state.user.email])
+
 
 	const date = new Date(published).toLocaleDateString('en-US', {
 		day: 'numeric',
