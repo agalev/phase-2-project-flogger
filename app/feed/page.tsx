@@ -19,12 +19,12 @@ export default function Feed() {
 			<h1 className='text-2xl font-semibold m-2'>
 				Check out the latest posts from our community!
 			</h1>
-			{data
+			{data && data.length > 0
 				? data.map((item) => (
 						<Card
 							image={item.image}
-							id={item.id}
-							key={item.id}
+							id={item.published}
+							key={item.published}
 							title={item.title}
 							author={item.author}
 							category={item.category}

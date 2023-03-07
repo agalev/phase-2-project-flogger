@@ -44,6 +44,11 @@ export default function Login() {
 									},
 									medium_username: user.medium_username
 								}
+								// ,
+								// favorites: fetch('http://localhost:3001/favorites').then(
+								// 	(res) => res.json()
+								// 	.then((data) => data.filter((favorite) => favorite)
+								// )
 							})
 							redirect()
 							return true

@@ -18,7 +18,8 @@ export async function GET(
 			},
 			body: JSON.stringify({
 				...rssitem,
-				image: rss.image
+				image: rss.image,
+				id: rssitem.published
 			})
 		})
 	})

@@ -24,21 +24,23 @@ export default function Favorites() {
 			<h1 className='text-2xl font-semibold m-2'>
 				Check out the latest posts from our community!
 			</h1>
-			{data
-				? data.map((item) => (
-						<Card
-							image={item.image}
-							id={item.id}
-							key={item.id}
-							title={item.title}
-							author={item.author}
-							category={item.category}
-							content={item.content}
-							published={item.published}
-							link={item.link}
-						/>
-				  ))
-				: null}
+			{data && data.length > 0 ? (
+				data.map((item) => (
+					<Card
+						image={item.image}
+						id={item.published}
+						key={item.published}
+						title={item.title}
+						author={item.author}
+						category={item.category}
+						content={item.content}
+						published={item.published}
+						link={item.link}
+					/>
+				))
+			) : (
+				<h2>You haven&apos;t marked any articles as favorite. Add some?</h2>
+			)}
 		</main>
 	)
 }

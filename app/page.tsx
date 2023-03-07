@@ -27,8 +27,8 @@ export default function Home() {
 				data.items.map((item) => (
 					<Card
 						image={data.image}
-						id={item.id}
-						key={item.id}
+						id={item.published}
+						key={item.published}
 						title={item.title}
 						author={item.author}
 						category={item.category}

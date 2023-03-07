@@ -35,21 +35,53 @@ export default function Card({
 		fetch('http://localhost:3001/favorites')
 			.then((res) => res.json())
 			.then((data) => {
-				const found = data.find((item) => item.id === id)
-				if (found) {
+				const found = data.find((item) => item.id === published)
+				if (
+					found &&
+					found.likedBy.find(
+						(likeEntry) => likeEntry === userData.state.user.email
+					)
+				) {
+					// console.log('found and liked')
 					fetch(`http://localhost:3001/favorites/${id}`, {
-						method: 'DELETE'
+						method: 'PATCH',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							likedBy: found.likedBy.filter(
+								(likeEntry) => likeEntry !== userData.state.user.email
+							)
+						})
 					})
 					setFavorite(!favorite)
-				} else {
+				} else if (
+					found &&
+					!found.likedBy.find(
+						(likeEntry) => likeEntry === userData.state.user.email
+					)
+				) {
+					// console.log('found and not liked')
+					fetch(`http://localhost:3001/favorites/${id}`, {
+						method: 'PATCH',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							likedBy: [...found.likedBy, userData.state.user.email]
+						})
+					})
+					setFavorite(!favorite)
+				} else if (!found) {
+					// console.log('not found')
 					fetch('http://localhost:3001/favorites', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json'
 						},
 						body: JSON.stringify({
-							likedBy: userData.state.user.email,
-							id,
+							likedBy: [userData.state.user.email],
+							id: published,
 							image,
 							title,
 							author,
