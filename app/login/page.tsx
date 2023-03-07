@@ -55,7 +55,7 @@ export default function Login() {
 	return userData.state.isLoggedIn ? (
 		<h1>Already logged in</h1>
 	) : (
-		<section className='grid justify-center'>
+		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			<form
 				className='border border-2 rounded border-teal-400 grid items-center justify-center m-4 p-2'
 				onSubmit={handleSubmit}
@@ -85,16 +85,16 @@ export default function Login() {
 				<button className='relative flex w-full justify-center rounded-md bg-teal-400 py-2 px-3 text-sm font-semibold text-white hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
 					Log in
 				</button>
-				<span>
+				<span className='relative inline-flex justify-center mt-2'>
 					Don&apos;t have an account?
 					<Link
-						className='relative inline-flex px-1 justify-center rounded-md bg-teal-400 mt-2 text-sm font-semibold text-white hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+						className='relative inline-flex px-1 justify-center rounded-md bg-teal-400 mt-1 ml-2 text-sm font-semibold text-white hover:bg-teal-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
 						href='/signup'
 					>
 						Sign up
 					</Link>
 				</span>
 			</form>
-		</section>
+		</main>
 	)
 }

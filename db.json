@@ -1,19 +1,37 @@
 {
-	"users": [
-		{
-			"id": 1,
-			"name": "Alex",
-			"email": "alex.galev@yahoo.com",
-			"password": "123456",
-			"medium_username": "alexander.galev",
-			"favorites": []
-		},
-		{
-			"name": "David",
-			"email": "david@david.com",
-			"password": "123",
-			"medium_username": "david",
-			"id": 2
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "name": "Alex",
+      "email": "alex.galev@yahoo.com",
+      "password": "123456",
+      "medium_username": "alexander.galev"
+    },
+    {
+      "name": "David",
+      "email": "david@david.com",
+      "password": "123",
+      "medium_username": "david",
+      "id": 2
+    }
+  ],
+  "favorites": [
+    {
+      "likedBy": "alex.galev@yahoo.com",
+      "id": "https://medium.com/p/be3f33cd7c37",
+      "image": "https://cdn-images-1.medium.com/fit/c/150/150/1*Ba5O4iG1aYIcuNpchhHzwg.jpeg",
+      "title": "How to get the most out of a coding bootcamp",
+      "author": "Alexander Galev",
+      "category": [
+        "education",
+        "software-development",
+        "software-engineering",
+        "codingbootcamp",
+        "bootcamp"
+      ],
+      "content": "<figure><img alt=\"\" src=\"https://cdn-images-1.medium.com/max/1024/0*wi2LCOvGnlwkXQvF\" /><figcaption>Photo by <a href=\"https://unsplash.com/@next_academy?utm_source=medium&utm_medium=referral\">NEXT Academy</a> on <a href=\"https://unsplash.com?utm_source=medium&utm_medium=referral\">Unsplash</a></figcaption></figure><p>Coding bootcamps are a compelling concept that has picked up quite the momentum in the last decade. The idea that one could acquire the skills needed to enter the software industry in a matter of weeks, not years, is very alluring to outsiders. But how efficient are those programs and how successful are their graduates? To answer these questions, we need to factor for the quality of the bootcamp, as well as preparedness & motivation of the candidate.</p><h3>Before the bootcamp</h3><p>It’s no secret to anyone the vast list of reasons why you would want to become a software engineer: high compensation, remote work, good work/life balance etc. But in my opinion these reasons attract people that would normally not enjoy sitting on a computer, staring at a screen, solving bugs, coming with solutions all day long. My recommendation to prospective candidates would be to take a few beginner courses on programming and get a feel of the material. That way, they can prepare for the possibility of enrolling into a program, while at the same time they can make a decision if coding is actually something they are genuinely interested in.</p><h3>Choosing the bootcamp</h3><p>There are so many programs out there, some of them good, most of them bad, and it can feel overwhelming when it comes to making a choice. It’s kind of like buying a car — you need to trust that it will be reliable and also that you’ll enjoy its features. You have probably heard the saying “you get what you pay for” and this is true in the coding bootcamp world as well. Some of the programs are very expensive, but they just happen to have the best results when it comes to job placement post-graduation. There’s different styles and intensity: some have a remote “live” format where you tune in virtually for lectures, have access to a chat to connect with your cohort. Others might be having slower intensity, also known as a “flex” format. The idea with that is that you’d be self-paced. Usually that means it would take longer time to go through the curriculum. Another format is an in-person program. That means you would have a classroom setting with instructors and your peers, which makes for easy collaboration. My advice:</p><ol><li>Choose a stack of technologies that you believe will have the best prospects in the future. Then stick with it until you learn the fundamentals of software development. Things move fast in the coding world and what tech was used 5 years ago may not be what’s used today. Our goal as software engineers is to adapt quickly to changes and never be left behind.</li><li>Choose the intensity that best suits your learning style and life situation. Sure it would be nice to finish in the least amount of time, but if that means you would be skimming through the material just to pass the challenges and tests, it might not be the best idea.</li></ol><h3>Attending the Bootcamp</h3><p>Ok, you have done some courses and have decided that, maybe, coding is for you. You have done your due diligence and have settled on a program that you like. What now?</p><ol><li>Show up everyday. This rings especially true for the live programs that have a higher intensity. Don’t let yesterday’s work be left for tomorrow, because soon enough you will find yourself overwhelmed and that’s not cool.</li><li>Take care of your mental and physical state! Can’t stress this enough. Eat food. Drink water. Go to bed early. Limit partying to Friday/Saturday. Take walks regularly. The mere fact of you being outside, breathing fresh air, (hopefully) basking in some sunshine, not staring at pixels will do wonders for your brain and your capacity to absorb info.</li><li>Give it your 100%! It’s time to prove to yourself that through vigor and enthusiasm, you can accomplish great things.</li></ol><h3>After Graduation</h3><p>You’ve done the hard part! Or have you? Well, it’s time you dip your feet in the cold water, a.k.a the job market. Start applying for jobs. Looking for a job is a full-time endeavor. Treat it as such. You will need to excel in order to secure a position. This means that the work is not done. You need to keep building upon your skills and improving. Keep working on your projects. As a bootcamp grad and not having any past experience, your projects are the single most important aspect of your education. Make sure you have at least 1 really well polished project that you have built from the grounds up. Make sure you can talk about it at length and explain the flow of data across the application. Don’t give up! It might get discouraging after a few rejections. But take every turn down as a learning opportunity: figure out where you lacked and improve. Be patient, keep at it and you shall be rewarded.</p><img src=\"https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=be3f33cd7c37\" width=\"1\" height=\"1\" alt=\"\">",
+      "published": 1676663177000,
+      "link": "https://medium.com/@alexander.galev/how-to-get-the-most-out-of-a-coding-bootcamp-be3f33cd7c37?source=rss-f0e9ac4ecef9------2"
+    }
+  ]
 }

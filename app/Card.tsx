@@ -1,4 +1,9 @@
+import { useState, useContext } from 'react'
 import Image from 'next/image'
+
+import { UserContext } from './user-provider'
+
+import { Star, FullStar } from './resources/icons'
 
 export default function Card({
 	image,
@@ -10,6 +15,9 @@ export default function Card({
 	published,
 	link
 }) {
+	const [favorite, setFavorite] = useState(false)
+	const userData = useContext(UserContext)
+
 	const date = new Date(published).toLocaleDateString('en-US', {
 		day: 'numeric',
 		month: 'short',
@@ -23,9 +31,34 @@ export default function Card({
 		.slice(0, 300)
 		.concat('...')
 
+	const handleFavorite = () => {
+		console.log('clicked', id)
+		fetch('http://localhost:3001/favorites', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				likedBy: userData.state.user.email,
+				id,
+				image,
+				title,
+				author,
+				category,
+				content,
+				published,
+				link
+			})
+		})
+		setFavorite(!favorite)
+	}
+
 	return (
-		<article className='flex max-w-3xl flex-col items-start justify-between border border-4 rounded border-teal-400  m-4 p-2 hover:bg-teal-100 hover:shadow-2xl'>
+		<article className='flex max-w-3xl flex-col items-start justify-between border border-4 rounded border-teal-400  m-4 p-2 hover:shadow-2xl'>
 			<div className='flex items-center border-b-2 border-r-2 border-teal-400 pb-1 text-xs'>
+				<button onClick={handleFavorite}>
+					{favorite ? <FullStar /> : <Star />}
+				</button>
 				<time className='text-teal-600'>{date}</time>
 				<span className='text-teal-600'>•</span>
 				{category.map((category, index) => {

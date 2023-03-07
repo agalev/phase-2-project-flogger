@@ -19,7 +19,6 @@ export default function Signup() {
 		router.push('/')
 	}
 
-
 	const handleChange = (e) => {
 		setFormData({
 			...formData,
@@ -38,20 +37,22 @@ export default function Signup() {
 			body: JSON.stringify(formData)
 		})
 			.then((res) => res.json())
-			.then(userData.dispatch({
-				type: 'LOGIN',
-				payload: {
-					user: {
-						email: formData.email,
-						medium_username: formData.medium_username,
+			.then(
+				userData.dispatch({
+					type: 'LOGIN',
+					payload: {
+						user: {
+							email: formData.email,
+							medium_username: formData.medium_username
+						}
 					}
-				}
-			}))
+				})
+			)
 			.then(redirect)
 	}
 
 	return (
-		<section className='grid justify-center'>
+		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			<form
 				className='border border-2 rounded border-teal-400 grid items-center justify-center m-4 p-2'
 				onSubmit={handleSubmit}
@@ -118,6 +119,6 @@ export default function Signup() {
 					</Link>
 				</span>
 			</form>
-		</section>
+		</main>
 	)
 }

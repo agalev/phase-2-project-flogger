@@ -16,8 +16,8 @@ export default function Header() {
 		setIsMenuOpen(false)
 	}
 
-	let router = useRouter()
-	function redirect() {
+	const router = useRouter()
+	const redirect = () => {
 		router.push('/login')
 	}
 
