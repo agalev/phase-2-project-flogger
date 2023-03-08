@@ -23,7 +23,7 @@ export default function Header() {
 
 	useEffect(() => {
 		userData.state.isLoggedIn &&
-			setMessage(`Hello ${userData.state.user.name}!`)
+			setMessage(`Hello ${userData.state.name}!`)
 	}, [userData])
 	return (
 		<nav className='bg-slate-700'>

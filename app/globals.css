@@ -3,5 +3,29 @@
 @tailwind utilities;
 
 html {
-	background-color: rgb(241 245 249)
+	background-color: rgb(241 245 249);
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.5em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+h3 {
+	font-size: large;
+	font-weight: bold;
+	padding-top: 1em;
+	text-decoration: underline;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+ol {
+	list-style-type: decimal;
+	margin: 1em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useContext } from 'react'
+import Link from 'next/link'
 import { UserContext } from '../user-provider'
 import Card from '../Card'
 
@@ -18,7 +19,7 @@ export default function Favorites() {
 				setData(filtered)
 			})
 	}, [userData.state.user.email])
-
+	//need to refresh after unlike
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			<h1 className='text-2xl font-semibold m-2'>
@@ -39,7 +40,10 @@ export default function Favorites() {
 					/>
 				))
 			) : (
-				<h2>You haven&apos;t marked any articles as favorite. Add some?</h2>
+				<h2>
+					You haven&apos;t marked any articles as favorite.
+					<Link href='/feed' className='text-teal-600'> Add some?</Link>
+				</h2>
 			)}
 		</main>
 	)

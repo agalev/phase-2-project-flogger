@@ -38,10 +38,8 @@ export default function Login() {
 							userData.dispatch({
 								type: 'LOGIN',
 								payload: {
-									user: {
-										name: user.name,
-										email: user.email
-									},
+									user: user.email,
+									name: user.name,
 									medium_username: user.medium_username
 								}
 								// ,
