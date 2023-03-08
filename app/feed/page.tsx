@@ -11,12 +11,12 @@ export default function Feed() {
 	useEffect(() => {
 		fetch('http://localhost:3001/feed')
 			.then((res) => res.json())
-			.then((data) => {setData(data)
-				 setCarbonCopy(data)})
+			.then((data) => {
+				setData(data)
+				setCarbonCopy(data)
+			})
 	}, [])
-	// const carbonCopy = data && [...data]
-	console.log(carbonCopy)
-	console.log(data)
+
 	const handleCategory = (e) => {
 		const category = e.target.id
 		const filtered = carbonCopy.filter((item) =>
@@ -66,7 +66,10 @@ export default function Feed() {
 						{category} ({categories[category]})
 					</span>
 				))}
-				<span onClick={() => setData(carbonCopy)} className='text-gray-100 text-sm ml-1 bg-teal-700 border border-transparent rounded-xl px-1 mb-1 cursor-pointer hover:bg-teal-500'>
+				<span
+					onClick={() => setData(carbonCopy)}
+					className='text-gray-100 text-sm ml-1 bg-teal-700 border border-transparent rounded-xl px-1 mb-1 cursor-pointer hover:bg-teal-500'
+				>
 					SHOW ALL ({data && carbonCopy.length})
 				</span>
 			</section>

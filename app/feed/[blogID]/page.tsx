@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Blog({ params }: { params: { blogID: string } }) {

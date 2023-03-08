@@ -30,10 +30,11 @@ export default function Card({
 					found.likedBy.find((likeEntry) => likeEntry === userData.state.user)
 				) {
 					setFavorite(true)
-				} else {
+					setLiked(found.likedBy.length)
+				} else if (found) {
 					setFavorite(false)
+					setLiked(found.likedBy.length)
 				}
-				setLiked(found.likedBy.length)
 			})
 	}, [userData.state.user, published, liked])
 
@@ -115,7 +116,13 @@ export default function Card({
 		<article className='flex max-w-3xl flex-col items-start justify-between border border-4 rounded border-teal-400  m-4 p-2 hover:shadow-2xl'>
 			<div className='flex items-center border-b-2 border-r-2 border-teal-400 pb-1 pr-1 text-xs'>
 				<button onClick={handleFavorite}>
-					{userData.state.isLoggedIn ? favorite ? <FullStar /> : <Star /> : null}
+					{userData.state.isLoggedIn ? (
+						favorite ? (
+							<FullStar />
+						) : (
+							<Star />
+						)
+					) : null}
 				</button>
 				<time className='text-teal-600 font-semibold'>{date}</time>
 				<span className='text-teal-600'>•</span>
@@ -133,7 +140,7 @@ export default function Card({
 			<div className='group relative'>
 				<Link
 					href='/feed/[id]'
-					as={`http://localhost:3000/feed/${id}`}
+					as={`/feed/${id}`}
 					className='text-lg font-semibold leading-6 text-teal-700 hover:text-teal-900 hover:font-bold'
 				>
 					{title}

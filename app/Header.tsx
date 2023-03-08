@@ -18,7 +18,7 @@ export default function Header() {
 
 	const router = useRouter()
 	const redirect = () => {
-		router.push('/login')
+		router.push('/feed')
 	}
 
 	useEffect(() => {
