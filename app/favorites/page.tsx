@@ -14,11 +14,11 @@ export default function Favorites() {
 			.then((res) => res.json())
 			.then((data) => {
 				const filtered = data.filter((item) =>
-					item.likedBy.includes(userData.state.user.email)
+					item.likedBy.includes(userData.state.user)
 				)
 				setData(filtered)
 			})
-	}, [userData.state.user.email])
+	}, [userData.state.user])
 	//need to refresh after unlike
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
@@ -42,7 +42,10 @@ export default function Favorites() {
 			) : (
 				<h2>
 					You haven&apos;t marked any articles as favorite.
-					<Link href='/feed' className='text-teal-600'> Add some?</Link>
+					<Link href='/feed' className='text-teal-600'>
+						{' '}
+						Add some?
+					</Link>
 				</h2>
 			)}
 		</main>

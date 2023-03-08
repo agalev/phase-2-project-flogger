@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from './user-provider'
 import Card from './Card'
+import { redirect } from 'next/navigation'
 
 export default function Home() {
 	const [data, setData] = useState(null)
@@ -13,7 +14,8 @@ export default function Home() {
 				.then((res) => res.json())
 				.then((data) => setData(data))
 	}, [userData.state.medium_username])
-
+	
+	{!userData.state.isLoggedIn && redirect('/feed')}
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			{data ? (
