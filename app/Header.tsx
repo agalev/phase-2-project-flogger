@@ -20,17 +20,13 @@ export default function Header() {
 	const redirect = () => {
 		router.push('/feed')
 	}
-
-	useEffect(() => {
-		userData.state.isLoggedIn &&
-			setMessage(`Hello ${userData.state.name}!`)
-	}, [userData])
+	
 	return (
 		<nav className='bg-slate-700'>
 			<div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
 				<div className='flex h-16 items-center justify-between'>
 					<div className='flex items-center'>
-						<div className='flex-shrink-0'>
+						<div className='flex-shrink-0 rainbow px-1'>
 							<span className='text-teal-400 text-2xl font-extrabold'>/ /</span>
 							<span className='text-white text-2xl font-semibold ml-2'>
 								Flogger

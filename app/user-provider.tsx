@@ -19,8 +19,7 @@ const UserProvider = ({ children }) => {
 					isLoggedIn: false,
 					user: null,
 					name: null,
-					medium_username: null,
-					favorites: []
+					medium_username: null
 				}
 			default:
 				return state
@@ -31,8 +30,7 @@ const UserProvider = ({ children }) => {
 		isLoggedIn: false,
 		user: null,
 		name: null,
-		medium_username: null,
-		favorites: []
+		medium_username: null
 	})
 
 	return (

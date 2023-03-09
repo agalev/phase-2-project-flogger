@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -14,30 +14,24 @@ export default function Card({
 	category,
 	content,
 	published,
-	link
+	link,
+	likedBy
 }) {
 	const userData = useContext(UserContext)
 	const [favorite, setFavorite] = useState(null)
-	const [liked, setLiked] = useState(null)
 
-	useEffect(() => {
-		fetch('http://localhost:3001/favorites')
-			.then((res) => res.json())
-			.then((data) => {
-				const found = data.find((item) => item.id === published)
-				if (
-					found &&
-					found.likedBy.find((likeEntry) => likeEntry === userData.state.user)
-				) {
-					setFavorite(true)
-					setLiked(found.likedBy.length)
-				} else if (found) {
-					setFavorite(false)
-					setLiked(found.likedBy.length)
-				}
-			})
-	}, [userData.state.user, published, liked])
+	// !!likedBy && setLiked(likedBy.length)
+	// if (
+	// 	likedBy.length > 0 &&
+	// 	likedBy.find((likeEntry) => likeEntry === userData.state.user)
+	// ) {
+	// 	setFavorite(true)
+	// } else if (likedBy && likedBy.length > 0) {
+	// 	// setFavorite(false)
+	// }
 
+	// likedBy && console.log(likedBy.length)
+	// console.log(likedBy)
 	const date = new Date(published).toLocaleDateString('en-US', {
 		day: 'numeric',
 		month: 'short',
@@ -52,78 +46,63 @@ export default function Card({
 		.concat('...')
 
 	const handleFavorite = () => {
-		fetch('http://localhost:3001/favorites')
+		fetch(`http://localhost:3001/feed/${id}`)
 			.then((res) => res.json())
-			.then((data) => {
-				const found = data.find((item) => item.id === published)
+			.then((blogData) => {
 				if (
-					found &&
-					found.likedBy.find((likeEntry) => likeEntry === userData.state.user)
+					blogData.likedBy.find(
+						(likeEntry) => likeEntry === userData.state.user
+					)
 				) {
-					// console.log('found and liked')
-					fetch(`http://localhost:3001/favorites/${id}`, {
+					fetch(`http://localhost:3001/feed/${id}`, {
 						method: 'PATCH',
 						headers: {
 							'Content-Type': 'application/json'
 						},
 						body: JSON.stringify({
-							likedBy: found.likedBy.filter(
+							likedBy: blogData.likedBy.filter(
 								(likeEntry) => likeEntry !== userData.state.user
 							)
 						})
+					}).then(() => {
+						setFavorite(false)
 					})
-					setFavorite(!favorite)
-				} else if (
-					found &&
-					!found.likedBy.find((likeEntry) => likeEntry === userData.state.user)
-				) {
-					// console.log('found and not liked')
-					fetch(`http://localhost:3001/favorites/${id}`, {
+				} else {
+					fetch(`http://localhost:3001/feed/${id}`, {
 						method: 'PATCH',
 						headers: {
 							'Content-Type': 'application/json'
 						},
 						body: JSON.stringify({
-							likedBy: [...found.likedBy, userData.state.user]
+							likedBy: [...blogData.likedBy, userData.state.user]
 						})
+					}).then(() => {
+						setFavorite(true)
 					})
-					setFavorite(!favorite)
-				} else if (!found) {
-					// console.log('not found')
-					fetch('http://localhost:3001/favorites', {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify({
-							likedBy: [userData.state.user],
-							id: published,
-							image,
-							title,
-							author,
-							category,
-							content,
-							published,
-							link
-						})
-					})
-					setFavorite(!favorite)
 				}
 			})
+	}
+
+	const displayStar = () => {
+		if (userData.state.isLoggedIn && favorite)
+			return (
+				<button onClick={handleFavorite}>
+					<FullStar />
+				</button>
+			)
+		else if (userData.state.isLoggedIn && !favorite)
+			return (
+				<button onClick={handleFavorite}>
+					<Star />
+				</button>
+			)
 	}
 
 	return (
 		<article className='flex max-w-3xl flex-col items-start justify-between border border-4 rounded border-teal-400  m-4 p-2 hover:shadow-2xl'>
 			<div className='flex items-center border-b-2 border-r-2 border-teal-400 pb-1 pr-1 text-xs'>
-				<button onClick={handleFavorite}>
-					{userData.state.isLoggedIn ? (
-						favorite ? (
-							<FullStar />
-						) : (
-							<Star />
-						)
-					) : null}
-				</button>
+				{displayStar()}
+
 				<time className='text-teal-600 font-semibold'>{date}</time>
 				<span className='text-teal-600'>•</span>
 				{category.map((category, index) => {
@@ -169,10 +148,13 @@ export default function Card({
 					</a>
 				</div>
 			</div>
-			{liked > 0 ? (
+			{likedBy && likedBy.length > 0 ? (
 				<p>
-					This article has been liked by {liked}{' '}
-					{liked === 1 ? 'user!' : 'users!'}
+					This article has been liked by{' '}
+					{likedBy.length > 1
+						? `${likedBy.length} users`
+						: `${likedBy.length} user`}
+					!
 				</p>
 			) : (
 				<p>Be the first one to like this article!</p>

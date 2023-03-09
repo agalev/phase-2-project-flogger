@@ -42,12 +42,8 @@ export default function Login() {
 									name: user.name,
 									medium_username: user.medium_username
 								}
-								// ,
-								// favorites: fetch('http://localhost:3001/favorites').then(
-								// 	(res) => res.json()
-								// 	.then((data) => data.filter((favorite) => favorite)
-								// )
 							})
+							fetch(`../api/accountData/${user.medium_username}`)
 							redirect()
 							return true
 						}

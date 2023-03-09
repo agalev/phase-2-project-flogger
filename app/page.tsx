@@ -1,21 +1,30 @@
 'use client'
 import { useState, useEffect, useContext } from 'react'
+import { redirect } from 'next/navigation'
 import { UserContext } from './user-provider'
 import Card from './Card'
-import { redirect } from 'next/navigation'
 
 export default function Home() {
-	const [data, setData] = useState(null)
 	const userData = useContext(UserContext)
+	const [data, setData] = useState(null)
 
 	useEffect(() => {
-		userData.state.medium_username &&
-			fetch(`./api/accountData/${userData.state.medium_username}`)
-				.then((res) => res.json())
-				.then((data) => setData(data))
+		fetch('http://localhost:3001/feed')
+			.then((res) => res.json())
+			.then((blogPosts) => {
+				setData(
+					blogPosts.filter(
+						(blog) => blog.addedBy === userData.state.medium_username
+					)
+				)
+			})
 	}, [userData.state.medium_username])
-	
-	{!userData.state.isLoggedIn && redirect('/feed')}
+	console.log(data)
+
+	{
+		!userData.state.isLoggedIn && redirect('/feed')
+	}
+
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			{data ? (
@@ -26,9 +35,9 @@ export default function Home() {
 				</h1>
 			)}
 			{data &&
-				data.items.map((item) => (
+				data.map((item) => (
 					<Card
-						image={data.image}
+						image={item.image}
 						id={item.published}
 						key={item.published}
 						title={item.title}
@@ -37,6 +46,7 @@ export default function Home() {
 						content={item.content}
 						published={item.published}
 						link={item.link}
+						likedBy={item.likedBy}
 					/>
 				))}
 		</main>

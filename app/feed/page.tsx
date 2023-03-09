@@ -110,6 +110,7 @@ export default function Feed() {
 							content={item.content}
 							published={item.published}
 							link={item.link}
+							likedBy={item.likedBy}
 						/>
 				  ))
 				: null}

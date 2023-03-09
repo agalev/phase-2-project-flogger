@@ -10,7 +10,7 @@ export default function Favorites() {
 	const userData = useContext(UserContext)
 
 	useEffect(() => {
-		fetch('http://localhost:3001/favorites')
+		fetch('http://localhost:3001/feed')
 			.then((res) => res.json())
 			.then((data) => {
 				const filtered = data.filter((item) =>
@@ -37,6 +37,7 @@ export default function Favorites() {
 						content={item.content}
 						published={item.published}
 						link={item.link}
+						likedBy={item.likedBy}
 					/>
 				))
 			) : (
