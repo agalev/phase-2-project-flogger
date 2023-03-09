@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,16 +19,13 @@ export default function Card({
 }) {
 	const userData = useContext(UserContext)
 	const [favorite, setFavorite] = useState(null)
+	const [likes, setLikes] = useState(likedBy.length)
 
-	// !!likedBy && setLiked(likedBy.length)
-	// if (
-	// 	likedBy.length > 0 &&
-	// 	likedBy.find((likeEntry) => likeEntry === userData.state.user)
-	// ) {
-	// 	setFavorite(true)
-	// } else if (likedBy && likedBy.length > 0) {
-	// 	// setFavorite(false)
-	// }
+	useEffect(() => {
+		likedBy && likedBy.find((likeEntry) => likeEntry === userData.state.user)
+			? setFavorite(true)
+			: setFavorite(false)
+	}, [likedBy, userData.state.user])
 
 	// likedBy && console.log(likedBy.length)
 	// console.log(likedBy)
@@ -66,6 +63,7 @@ export default function Card({
 						})
 					}).then(() => {
 						setFavorite(false)
+						setLikes((likes) => likes - 1)
 					})
 				} else {
 					fetch(`http://localhost:3001/feed/${id}`, {
@@ -78,6 +76,7 @@ export default function Card({
 						})
 					}).then(() => {
 						setFavorite(true)
+						setLikes((likes) => likes + 1)
 					})
 				}
 			})
@@ -102,7 +101,6 @@ export default function Card({
 		<article className='flex max-w-3xl flex-col items-start justify-between border border-4 rounded border-teal-400  m-4 p-2 hover:shadow-2xl'>
 			<div className='flex items-center border-b-2 border-r-2 border-teal-400 pb-1 pr-1 text-xs'>
 				{displayStar()}
-
 				<time className='text-teal-600 font-semibold'>{date}</time>
 				<span className='text-teal-600'>•</span>
 				{category.map((category, index) => {
@@ -148,13 +146,10 @@ export default function Card({
 					</a>
 				</div>
 			</div>
-			{likedBy && likedBy.length > 0 ? (
+			{likes > 0 ? (
 				<p>
 					This article has been liked by{' '}
-					{likedBy.length > 1
-						? `${likedBy.length} users`
-						: `${likedBy.length} user`}
-					!
+					{likes > 1 ? `${likes} users` : `${likes} user`}!
 				</p>
 			) : (
 				<p>Be the first one to like this article!</p>

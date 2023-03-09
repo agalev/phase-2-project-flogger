@@ -19,7 +19,6 @@ export default function Home() {
 				)
 			})
 	}, [userData.state.medium_username])
-	console.log(data)
 
 	{
 		!userData.state.isLoggedIn && redirect('/feed')

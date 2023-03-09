@@ -5,11 +5,15 @@ import { useRouter } from 'next/navigation'
 import { UserContext } from './user-provider'
 
 export default function Header() {
+	const userData = useContext(UserContext)
 	const [currentPage, setCurrentPage] = useState('dashboard')
 	const [message, setMessage] = useState('Hello stranger! Please login ->')
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-	const userData = useContext(UserContext)
+	useEffect(() => {
+		userData.state.isLoggedIn ? setMessage(`Hello ${userData.state.name}!`) : setMessage('Hello stranger! Please login ->')
+		
+		}, [userData.state.isLoggedIn, userData.state.name])
 
 	const handleNav = (e) => {
 		setCurrentPage(e.target.innerText.toLowerCase())
@@ -20,7 +24,7 @@ export default function Header() {
 	const redirect = () => {
 		router.push('/feed')
 	}
-	
+
 	return (
 		<nav className='bg-slate-700'>
 			<div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>

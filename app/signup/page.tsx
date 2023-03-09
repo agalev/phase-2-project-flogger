@@ -5,14 +5,13 @@ import { useRouter } from 'next/navigation'
 import { UserContext } from '../user-provider'
 
 export default function Signup() {
+	const userData = useContext(UserContext)
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		password: '',
 		medium_username: ''
 	})
-
-	const userData = useContext(UserContext)
 
 	let router = useRouter()
 	function redirect() {
@@ -28,7 +27,7 @@ export default function Signup() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(formData)
+		fetch(`../api/accountData/${formData.medium_username}`)
 		fetch('http://localhost:3001/users/', {
 			method: 'POST',
 			headers: {
@@ -36,19 +35,17 @@ export default function Signup() {
 			},
 			body: JSON.stringify(formData)
 		})
-			.then((res) => res.json())
 			.then(
 				userData.dispatch({
 					type: 'LOGIN',
 					payload: {
-						user: {
-							email: formData.email,
-							medium_username: formData.medium_username
-						}
+						user: formData.email,
+						name: formData.name,
+						medium_username: formData.medium_username
 					}
 				})
 			)
-			.then(redirect)
+			.finally(() => redirect())
 	}
 
 	return (

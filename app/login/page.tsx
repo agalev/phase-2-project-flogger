@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { UserContext } from '../user-provider'
 
 export default function Login() {
+	const userData = useContext(UserContext)
 	const [formData, setFormData] = useState({
 		email: '',
 		password: ''
@@ -14,8 +15,6 @@ export default function Login() {
 	function redirect() {
 		router.push('/')
 	}
-
-	const userData = useContext(UserContext)
 
 	const handleChange = (e) => {
 		setFormData({
