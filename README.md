@@ -1,4 +1,4 @@
-# <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"> <b>Flogger</b> #
+# <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"> <b>Flogger</b> - **A Medium Blog Compendium** #
 I created Flogger while attending Flatiron School in March 2023. It was my Phase 2 project, where we were asked to create a React app. It goes a bit beyond that, as I utilized technologies that weren't taught in the bootcamp, as well as a web-scraping technique. Scraping wasn't my first choice, but I was forced into it given the fact that Medium's native API is extremely limited.
 
 I opted in using **NextJS13** framework. My initial goal was to incorporate global state management **Redux**, but it wasn't playing well with Nextjs' new App folder feature, which is currently in beta. So instead, I went with a combination of React's native methods, namely *createContext / useContext / useReducer*. I believe managing state in this manner closely resembles what Redux does.
