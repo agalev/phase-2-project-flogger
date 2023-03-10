@@ -1,17 +1,20 @@
-# <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"> <b>Flogger</b> - **A Medium Blog Compendium** #
-I created Flogger while attending Flatiron School in March 2023. It was my Phase 2 project, where we were asked to create a React app. It goes a bit beyond that, as I utilized technologies that weren't taught in the bootcamp, as well as a web-scraping technique. Scraping wasn't my first choice, but I was forced into it given the fact that Medium's native API is extremely limited.
-
-I opted in using **NextJS13** framework. My initial goal was to incorporate global state management **Redux**, but it wasn't playing well with Nextjs' new App folder feature, which is currently in beta. So instead, I went with a combination of React's native methods, namely *createContext / useContext / useReducer*. I believe managing state in this manner closely resembles what Redux does.
-
-This Readme offers information about the project as well as instructions on how to clone/fork/run it in your environment.
+# <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"> <b>Flogger</b> - **A Medium Blog Compendium**
 
 ## Tech Stack
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 
+I created Flogger while attending Flatiron School in March 2023. It was my Phase 2 project, where we were asked to create a React app. It goes a bit beyond that, as I utilized technologies that weren't taught in the bootcamp, as well as a web-scraping technique. Scraping wasn't my first choice, but I was forced into it given the fact that Medium's native API is extremely limited.
+
+I leveraged **NextJS13** as framework. My initial goal was to incorporate global state management with **Redux**, but it wasn't playing well with Nextjs' new 'app' folder feature, which is currently in beta. So instead, I went with a combination of React's native methods, namely _createContext / useContext / useReducer_. I believe managing the global state in this manner closely resembles what Redux does out of the box.
+
+This Readme offers information about the project as well as instructions on how to clone/fork/run it in your environment.
+
 ## User Stories
+
 ❖ Upon visiting the homepage, users are initially not logged in and hence routed to the general /feed path which aggregates posts from all our registered users.
 
 ❖ A Login button is presented in the navbar on the top right, which when initiated, it brings the user to the Login form.
