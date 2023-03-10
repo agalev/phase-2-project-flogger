@@ -20,6 +20,13 @@
       "password": "123",
       "medium_username": "helloitsjoe",
       "id": 3
+    },
+    {
+      "name": "chris",
+      "email": "chris@chris.com",
+      "password": "123",
+      "medium_username": "chris.brower.96",
+      "id": 4
     }
   ],
   "feed": [
@@ -69,7 +76,8 @@
       "media": {},
       "image": "https://cdn-images-1.medium.com/fit/c/150/150/1*qQyuv_p7jVqUAaMBGHgp-g.png",
       "likedBy": [
-        "alex.galev@yahoo.com"
+        "alex.galev@yahoo.com",
+        "chris@chris.com"
       ],
       "addedBy": "david"
     },
@@ -239,6 +247,29 @@
       "image": "https://cdn-images-1.medium.com/fit/c/150/150/1*iOcmHOyZnKQw5ZIO9CUO5w@2x.jpeg",
       "likedBy": [],
       "addedBy": "helloitsjoe"
+    },
+    {
+      "id": 1677023215000,
+      "title": "Using Fetch API",
+      "link": "https://medium.com/@chris.brower.96/using-fetch-api-8d9c56b95d59?source=rss-225a618131ff------2",
+      "author": "Chris Brower ",
+      "published": 1677023215000,
+      "created": 1677023215000,
+      "category": [
+        "new-to-programming",
+        "fetch-api",
+        "javascript",
+        "fetch"
+      ],
+      "content": "<figure><img alt=\"\" src=\"https://cdn-images-1.medium.com/max/1024/0*0OIWoV-UcTw0W6hb.png\" /></figure><p>As a beginner in JavaScript, one of the most fundamental skills you’ll need to learn is how to retrieve data from servers using JavaScript. Fetch is a tool in JavaScript that lets you get data from other websites. It can also help you make new data, change old data, and delete data too. It’s important to know how to use it because it can help you work with things outside of your website.</p><p>In this blog, we’ll explore what the Fetch API is, how to use it, and provide some best practices to keep in mind when using it.</p><h3>What is the Fetch API?</h3><p>The Fetch API is a modern JavaScript API for retrieving resources across the network. The Fetch API is built into modern web browsers and provides a simple interface for fetching resources. It uses Promises to make asynchronous requests.</p><h3>How to Use the Fetch API</h3><p>To use the Fetch API, you start by calling the fetch() function, passing in the URL you want to fetch from. The fetch() function returns a Promise that resolves with a Response object. You can then use the methods on the Response object to access the data you want.</p><h3>Best Practices</h3><p>Here are some best practices to keep in mind when using the Fetch API:</p><ol><li>Always check for errors: When making a request, it’s important to handle errors correctly. You can check the ok property of the Response object to see if the request was successful. If it wasn’t, you can handle the error by throwing an error or logging an error message.</li><li>Always parse the response: If you’re retrieving data from a server, it’s important to parse the response correctly. You can use the json(), text(), or blob() methods on the Response object to parse the response into the format you need.</li><li>Use async/await: Async/await is a newer feature in JavaScript that makes it easier to write asynchronous code. You can use async/await with the Fetch API to make your code more readable and maintainable.</li></ol><h3>Performing GET Requests</h3><p>Here’s an example of how to use the Fetch API to retrieve some JSON data:</p><pre>fetch('http://localhost:3000/toys') <br>.then(response => response.json()) <br>.then(data => console.log(data));</pre><p>In this example, we’re using the fetch() function to retrieve some data from the toys API. We’re calling the json() method on the Response object to parse the data as JSON, and then logging it to the console.</p><h3>Performing POST Requests</h3><p>POST requests are used to send data to a server. This is commonly used for creating new resources or updating existing ones. Here’s an example of how to make a POST request using Fetch:</p><pre>fetch(\"http://localhost:3000/toys\", {<br>headers: {<br>\"Content-Type\": \"application/json\",<br>\"Accept\": \"application/json\",<br>},<br>method: \"POST\",<br>body: JSON.stringify({<br>name: e.target['name'].value,<br>image: e.target['image'].value,<br>likes: 0<br>})<br>})<br>.then((res) => res.json())<br>.then((toy) => {renderToy(toy)})<br>console.log(e.target['name'].value)</pre><p>In this example, we create an object called data that contains the toy image and name. We then use the Fetch API to make a POST request to <a href=\"http://localhost:3000/toys,\">http://localhost:3000/toys,</a> and we pass in the method, headers, and body options. We also use the json() method to parse the response data, and lastly, we render an object and log the data to the console.</p><h3>Deleting Data with DELETE</h3><p>DELETE requests are used to remove existing resources from a server. Here’s an example of how to make a DELETE request using Fetch:</p><pre>fetch(`http://localhost:3000/toys/${id}`, {<br>method: \"DELETE\"})<br>.then(res => res.json())<br>.then(()=> {toyCard.remove()})<br>})</pre><p>In this example we are removing an object from the json file, then once the promise comes back, remove the element from the page so it updates in real time.</p><h3>Conclusion</h3><p>The Fetch API is a powerful tool that makes it easy to retrieve data from servers in your JavaScript code. With its simple interface and use of Promises, it’s a great way to write asynchronous code.</p><p>As a beginner, it’s important to take the time to learn the basics of the Fetch API and understand best practices for using it. By understanding these practices and use of fetch, you’’ll be ready to handle many new scenarios as a developing developer.</p><img src=\"https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=8d9c56b95d59\" width=\"1\" height=\"1\" alt=\"\">",
+      "enclosures": [],
+      "content_encoded": "<figure><img alt=\"\" src=\"https://cdn-images-1.medium.com/max/1024/0*0OIWoV-UcTw0W6hb.png\" /></figure><p>As a beginner in JavaScript, one of the most fundamental skills you’ll need to learn is how to retrieve data from servers using JavaScript. Fetch is a tool in JavaScript that lets you get data from other websites. It can also help you make new data, change old data, and delete data too. It’s important to know how to use it because it can help you work with things outside of your website.</p><p>In this blog, we’ll explore what the Fetch API is, how to use it, and provide some best practices to keep in mind when using it.</p><h3>What is the Fetch API?</h3><p>The Fetch API is a modern JavaScript API for retrieving resources across the network. The Fetch API is built into modern web browsers and provides a simple interface for fetching resources. It uses Promises to make asynchronous requests.</p><h3>How to Use the Fetch API</h3><p>To use the Fetch API, you start by calling the fetch() function, passing in the URL you want to fetch from. The fetch() function returns a Promise that resolves with a Response object. You can then use the methods on the Response object to access the data you want.</p><h3>Best Practices</h3><p>Here are some best practices to keep in mind when using the Fetch API:</p><ol><li>Always check for errors: When making a request, it’s important to handle errors correctly. You can check the ok property of the Response object to see if the request was successful. If it wasn’t, you can handle the error by throwing an error or logging an error message.</li><li>Always parse the response: If you’re retrieving data from a server, it’s important to parse the response correctly. You can use the json(), text(), or blob() methods on the Response object to parse the response into the format you need.</li><li>Use async/await: Async/await is a newer feature in JavaScript that makes it easier to write asynchronous code. You can use async/await with the Fetch API to make your code more readable and maintainable.</li></ol><h3>Performing GET Requests</h3><p>Here’s an example of how to use the Fetch API to retrieve some JSON data:</p><pre>fetch('http://localhost:3000/toys') <br>.then(response => response.json()) <br>.then(data => console.log(data));</pre><p>In this example, we’re using the fetch() function to retrieve some data from the toys API. We’re calling the json() method on the Response object to parse the data as JSON, and then logging it to the console.</p><h3>Performing POST Requests</h3><p>POST requests are used to send data to a server. This is commonly used for creating new resources or updating existing ones. Here’s an example of how to make a POST request using Fetch:</p><pre>fetch(\"http://localhost:3000/toys\", {<br>headers: {<br>\"Content-Type\": \"application/json\",<br>\"Accept\": \"application/json\",<br>},<br>method: \"POST\",<br>body: JSON.stringify({<br>name: e.target['name'].value,<br>image: e.target['image'].value,<br>likes: 0<br>})<br>})<br>.then((res) => res.json())<br>.then((toy) => {renderToy(toy)})<br>console.log(e.target['name'].value)</pre><p>In this example, we create an object called data that contains the toy image and name. We then use the Fetch API to make a POST request to <a href=\"http://localhost:3000/toys,\">http://localhost:3000/toys,</a> and we pass in the method, headers, and body options. We also use the json() method to parse the response data, and lastly, we render an object and log the data to the console.</p><h3>Deleting Data with DELETE</h3><p>DELETE requests are used to remove existing resources from a server. Here’s an example of how to make a DELETE request using Fetch:</p><pre>fetch(`http://localhost:3000/toys/${id}`, {<br>method: \"DELETE\"})<br>.then(res => res.json())<br>.then(()=> {toyCard.remove()})<br>})</pre><p>In this example we are removing an object from the json file, then once the promise comes back, remove the element from the page so it updates in real time.</p><h3>Conclusion</h3><p>The Fetch API is a powerful tool that makes it easy to retrieve data from servers in your JavaScript code. With its simple interface and use of Promises, it’s a great way to write asynchronous code.</p><p>As a beginner, it’s important to take the time to learn the basics of the Fetch API and understand best practices for using it. By understanding these practices and use of fetch, you’’ll be ready to handle many new scenarios as a developing developer.</p><img src=\"https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=8d9c56b95d59\" width=\"1\" height=\"1\" alt=\"\">",
+      "media": {},
+      "image": "https://cdn-images-1.medium.com/fit/c/150/150/0*0etq77NrakOXDk4t",
+      "likedBy": [
+        "chris@chris.com"
+      ],
+      "addedBy": "chris.brower.96"
     }
   ]
 }
