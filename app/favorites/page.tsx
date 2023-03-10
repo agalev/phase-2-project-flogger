@@ -23,7 +23,7 @@ export default function Favorites() {
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			<h1 className='text-2xl font-semibold m-2'>
-				Check out the latest posts from our community!
+				Your repository of favorite articles
 			</h1>
 			{data && data.length > 0 ? (
 				data.map((item) => (
