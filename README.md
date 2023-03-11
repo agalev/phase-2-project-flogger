@@ -1,5 +1,7 @@
 # <img src="https://media2.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif?cid=ecf05e47a0n3gi1bfqntqmob8g9aid1oyj2wr3ds3mg700bl&rid=giphy.gif" width ="25"> <b>Flogger</b> - **A Medium Blog Compendium**
 
+![Flogger](https://user-images.githubusercontent.com/17399666/224506685-74a43315-192c-401f-8d82-6ee09d8fc67d.gif)
+
 ### Tech Stack
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
