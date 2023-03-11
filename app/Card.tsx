@@ -27,13 +27,12 @@ export default function Card({
 			: setFavorite(false)
 	}, [likedBy, userData.state.user])
 
-	// likedBy && console.log(likedBy.length)
-	// console.log(likedBy)
 	const date = new Date(published).toLocaleDateString('en-US', {
 		day: 'numeric',
 		month: 'short',
 		year: 'numeric'
 	})
+	
 	// regex for parsing html tags
 	const regex = /(<([^>]+)>)/gi
 	// remove html tags from content

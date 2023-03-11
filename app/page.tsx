@@ -23,11 +23,13 @@ export default function Home() {
 	{
 		!userData.state.isLoggedIn && redirect('/feed')
 	}
-console.log(data)
+
 	return (
 		<main className='flex flex-col flex-grow min-h-screen items-center container max-w-screen-lg m-auto px-5 md:px-12 lg:px-24'>
 			{data ? (
-				<h1 className='text-2xl font-semibold m-2'>Medium posts for: {data[0].author}</h1>
+				<h1 className='text-2xl font-semibold m-2'>
+					Medium posts for: {data[0].author}
+				</h1>
 			) : (
 				<h1 className='text-2xl font-semibold m-2'>
 					Hello! Please log in to view your list of Medium publications.
