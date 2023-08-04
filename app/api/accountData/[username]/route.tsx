@@ -26,6 +26,5 @@ export async function GET(
 			console.log(err)
 		}
 	})
-	//unable to return anything other than JSON
 	return NextResponse.json(rss)
 }
